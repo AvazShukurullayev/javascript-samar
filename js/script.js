@@ -1,32 +1,20 @@
 "use strict"
-let numberOfSeries = +prompt("Nechta serial korgansiz?")
 
-const seriesDB = {
-    count: numberOfSeries,
-    series: {},
-    genres: [],
-    private: false
-}
+let numberOfSeries
 
-if (seriesDB.count >= 10) {
-    console.log("Eng kop")
-} else if (5 <= seriesDB.count && seriesDB.count < 10) {
-    console.log("Normal")
-} else {
-    console.log("Eng kam")
-}
-
-for (let i = 0; i < 2; i++) {
-    const serialTitle = prompt("Serial nomi?"),
-        serialWatchCount = prompt("Necha marotaba korgansiz?")
-
-    if (serialTitle != null && serialWatchCount != null && serialTitle !== "" && serialWatchCount !== "") {
-        seriesDB.series[serialTitle] = serialWatchCount
-        console.log("done")
-    } else {
-        console.log("error")
-        i--
+function startApp() {
+    numberOfSeries = +prompt("Necha marta serial korgansiz?")
+    while (numberOfSeries === 0 || numberOfSeries === "" || numberOfSeries === null) {
+        numberOfSeries = +prompt("Necha marta serial korgansiz?")
     }
 }
-console.log("seriesDB => ", seriesDB)
-//Todo: for ni orniga while, do...while bilan ham qilish kerak.
+
+startApp()
+
+const series = {
+    count: numberOfSeries,
+    genres: [],
+    series: {},
+}
+
+console.log(series)
