@@ -14,21 +14,21 @@ const seriesDB = {
     count: numberOfSeries,
     genres: [],
     series: {},
+    private: false
 }
 
 function seriesFunc() {
-    let serialTitle, serialMark;
-    let i = 0
-    do {
-        serialTitle = prompt("Serial title?")
-        serialMark = prompt("Serial mark?")
-        if (serialTitle !== "" && serialTitle !== null && serialMark !== "" && serialMark !== null) {
+    for (let i = 0; i < 2; i++) {
+        let serialTitle = prompt("Serial title?"),
+            serialMark = prompt("Serial mark?");
+        if (serialTitle !== "" && serialTitle != null && serialMark !== "" && serialMark != null) {
+            console.log("success")
             seriesDB.series[serialTitle] = serialMark
-            i++
         } else {
-            i = 0
+            console.log("error")
+            i--
         }
-    } while (i < 2)
+    }
 }
 
 seriesFunc()
@@ -43,5 +43,28 @@ function countFunc() {
     }
 }
 
-countFunc()
 console.log(seriesDB)
+countFunc()
+
+
+function writeGenres() {
+    for (let i = 0; i < 3; i++) {
+        let lovelySerial = prompt("Yoqtirgan janringiz?")
+        if (lovelySerial !== "" && lovelySerial !== null) {
+            seriesDB.genres[i] = lovelySerial
+        } else {
+            i--
+        }
+    }
+}
+
+writeGenres()
+
+function showDB() {
+    if (!seriesDB.private) {
+        console.log("seriesDB => ", seriesDB)
+    }
+}
+
+showDB()
+
