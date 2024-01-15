@@ -5,7 +5,7 @@ let numberOfSeries
 function startApp() {
     do {
         numberOfSeries = +prompt("Necha marta serial korgansiz?")
-    } while (numberOfSeries === 0)
+    } while (numberOfSeries === 0 || numberOfSeries === null || numberOfSeries === "" || isNaN(numberOfSeries))
 }
 
 startApp()
@@ -13,6 +13,7 @@ startApp()
 const seriesDB = {
     count: numberOfSeries,
     genres: [],
+    actors: {},
     series: {},
     private: false
 }
@@ -33,23 +34,22 @@ function seriesFunc() {
 
 seriesFunc()
 
-function countFunc() {
-    if (seriesDB.count >= 10) {
+function countFunc(count) {
+    if (count >= 10) {
         console.log("Max viewer")
-    } else if (5 <= seriesDB.count && seriesDB.count < 10) {
+    } else if (5 <= count && count < 10) {
         console.log("Normal viewer")
     } else {
         console.log("Min viewer")
     }
 }
 
-console.log(seriesDB)
-countFunc()
+countFunc(seriesDB.count)
 
 
 function writeGenres() {
     for (let i = 0; i < 3; i++) {
-        let lovelySerial = prompt("Yoqtirgan janringiz?")
+        let lovelySerial = prompt(`Yoqtirgan janringiz ${i + 1}?`)
         if (lovelySerial !== "" && lovelySerial !== null) {
             seriesDB.genres[i] = lovelySerial
         } else {
@@ -60,11 +60,11 @@ function writeGenres() {
 
 writeGenres()
 
-function showDB() {
-    if (!seriesDB.private) {
+function showDB(hidden) {
+    if (!hidden) {
         console.log("seriesDB => ", seriesDB)
     }
 }
 
-showDB()
+showDB(seriesDB.private)
 
